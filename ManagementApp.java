@@ -170,33 +170,50 @@ public class ManagementApp{
 
     
     public static void addBankAcc(Account bankaccs) {
-      int accounttype;
+      int accounttype = 0;
       String acctrouting="";
       double balance = 0;
-      String acctname;
+      String acctname="";
 
       do {
           acctname = JOptionPane.showInputDialog(null, "Enter Bank Name");
-
-          accounttype = Integer.parseInt(JOptionPane.showInputDialog(null, "Choose account type:\n 1) Checking\n 2) Savings\n 3) Credit"));
-
-          acctrouting = JOptionPane.showInputDialog(null, "Enter the routing/acct number for account");
-
-          balance = Double.parseDouble(JOptionPane.showInputDialog(null, "Enter initial balance: "));
       }
-      while(accounttype == 1 || accounttype == 2 || accounttype == 3);
+      while (acctname == null || acctname.equals(""));
+
+      do {
+
+
+              try {
+                  accounttype = Integer.parseInt(JOptionPane.showInputDialog(null, "Choose account type:\n 1) Checking\n 2) Savings\n 3) Credit"));
+              } catch (NumberFormatException e) {
+                  JOptionPane.showMessageDialog(null, "Error: Choice must be number 1, 2, or 3.  Please try again.");
+              }
+      }
+      while(accounttype < 1 || accounttype > 4);
+
+      do {
+          acctrouting = JOptionPane.showInputDialog(null, "Enter the routing/acct number for account");
+      }
+      while (acctrouting == null || acctrouting.equals(""));
+          balance = Double.parseDouble(JOptionPane.showInputDialog(null, "Enter initial balance: "));
+
 
           if (accounttype == 1) {
               bankaccs = new CheckinAcc("Checking Account", acctname, acctrouting, balance);
+              JOptionPane.showMessageDialog(null, "Checking Account Added successfully!");
           } else if (accounttype == 2) {
               bankaccs = new SavingAcc("Saving Account", acctname, acctrouting, balance);
+              JOptionPane.showMessageDialog(null, "Saving Account Added successfully!");
           } else if (accounttype == 3) {
               bankaccs = new CreditAcct("Credit Account", acctname, acctrouting, balance);
+              JOptionPane.showMessageDialog(null, "Checking Account Added successfully!");
+          }
+          else {
+              bankaccs = new CheckinAcc("Checking Account", acctname, acctrouting, balance);
           }
 
-
-
-               JOptionPane.showMessageDialog(null, "Account created successfully!");
+          
+             
     }
     
 
