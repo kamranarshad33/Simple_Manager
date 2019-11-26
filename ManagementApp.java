@@ -69,6 +69,8 @@ public class ManagementApp{
                     String filep = JOptionPane.showInputDialog("Enter the file path to read the transactions from a file");
                  
                     getTransactions(filep);
+                    JOptionPane.showMessageDialog(null, "Transactions Added Sucessfully!!");
+
                     //getBankAcc(UserObj); //choose which bank account to make the transaction with
                     //newTransaction(bankAcc); //make transaction (withdrawal, disposit)
                     //receipt(); //can be done at end of transaction instead
@@ -230,14 +232,29 @@ public class ManagementApp{
    } // End method
 
 
-    
+    public static Transaction[] sortByAmount(Transaction[] transactions) {
+        double min=0;
+        int		k=0;
+        for(int i=0; i<transactions.length-1; i++){
+            min = transactions[i].getAmount();
+            for(int j=i+1; j<transactions.length; j++){
+                if(min > transactions[j].getAmount()) {
+                    min = transactions[j].getAmount();
+                    k=j; }}
+            if(transactions[i].getAmount() > min){ //swap
+                Transaction temp = transactions[i];
+                transactions[i] = transactions[k];
+                transactions[k] = temp;
+            } }
+        return transactions;
+    }
 
-  
-    
 
 
 
-   // public static void receipt() {
+
+
+    // public static void receipt() {
 
    // }
  /*
