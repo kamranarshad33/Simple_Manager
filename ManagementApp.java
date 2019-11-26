@@ -16,7 +16,7 @@ public class ManagementApp{
         Account[] bankAccs = new Account[10];
         int maxacct = 10;
         int acctcounter = 0;
-        Transaction[] transations = null;
+        Transaction[] transactions = null;
 
 /*
         //read from files to create objects: loadData();
@@ -68,7 +68,7 @@ public class ManagementApp{
                     JOptionPane.showMessageDialog(null, "add transactions");
                     String filep = JOptionPane.showInputDialog("Enter the file path to read the transactions from a file");
                  
-                    getTransactions(filep);
+                    transactions = getTransactions(filep);
                     JOptionPane.showMessageDialog(null, "Transactions Added Sucessfully!!");
 
                     //getBankAcc(UserObj); //choose which bank account to make the transaction with
@@ -84,7 +84,7 @@ public class ManagementApp{
                     break;
                 case 4:
                     JOptionPane.showMessageDialog(null, "user report");
-                    //generateReport(UserObj);
+                    generateReport(transactions);
                     break;
                 case 5:
                     JOptionPane.showMessageDialog(null, "quit");
@@ -271,6 +271,20 @@ public class ManagementApp{
                 transactions[k] = temp;
             } }
         return transactions;
+    }
+    
+    public static void generateReport(Transaction[] transactions) {
+      String report = "Transactions Report:\n\nDate | Category | Amount\n";
+      
+      try {
+         for (int i = 0; i < transactions.length; i++) {
+            report += transactions[i].toString() + "\n";
+         }
+         JOptionPane.showMessageDialog(null, report);  
+      }
+      catch(NullPointerException n) {
+         JOptionPane.showMessageDialog(null, "Error. Please try again.");
+      }
     }
 
 

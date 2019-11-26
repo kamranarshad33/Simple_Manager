@@ -62,6 +62,6 @@ public class Transaction{
 
 
     public String toString() {
-      return getDate() + " " + getTransType() + " $" + getAmount();
+      return getDate() + " | " + getTransType() + " | $" + getAmount();
     }
 }  
