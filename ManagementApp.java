@@ -170,23 +170,30 @@ public class ManagementApp{
 
     
     public static void addBankAcc(Account bankaccs) {
-      String accounttype="";
+      int accounttype;
       String acctrouting="";
       double balance = 0;
+      String acctname;
 
+      do {
+          acctname = JOptionPane.showInputDialog(null, "Enter Bank Name");
 
-      String acctname = JOptionPane.showInputDialog(null, "Enter Bank Name");
+          accounttype = Integer.parseInt(JOptionPane.showInputDialog(null, "Choose account type:\n 1) Checking\n 2) Savings\n 3) Credit"));
 
-      accounttype = JOptionPane.showInputDialog(null, "Choose account type:\n 1) Checking\n 2) Savings\n 3) Credit");
+          acctrouting = JOptionPane.showInputDialog(null, "Enter the routing/acct number for account");
 
-      acctrouting = JOptionPane.showInputDialog(null, "Enter the routing/acct number for account");
+          balance = Double.parseDouble(JOptionPane.showInputDialog(null, "Enter initial balance: "));
+      }
+      while(accounttype == 1 || accounttype == 2 || accounttype == 3);
 
-      balance = Double.parseDouble(JOptionPane.showInputDialog(null, "Enter initial balance: "));
-      
-      
+          if (accounttype == 1) {
+              bankaccs = new CheckinAcc("Checking Account", acctname, acctrouting, balance);
+          } else if (accounttype == 2) {
+              bankaccs = new SavingAcc("Saving Account", acctname, acctrouting, balance);
+          } else if (accounttype == 3) {
+              bankaccs = new CreditAcct("Credit Account", acctname, acctrouting, balance);
+          }
 
-
-      bankaccs = new Account(accounttype,acctname,acctrouting , balance);
 
 
                JOptionPane.showMessageDialog(null, "Account created successfully!");
