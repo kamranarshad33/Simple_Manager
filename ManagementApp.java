@@ -278,14 +278,20 @@ public class ManagementApp{
       @param transactions transactions list
     */
     public static void generateReport(Transaction[] transactions) {
+      // String transaction/account information will be appended to
       String report = "Transactions Report:\n\nDate | Category | Amount\n";
       
+      // Append transaction/account information on to report, then
+      // display formatted report to user
       try {
          for (int i = 0; i < transactions.length; i++) {
+            // appends new line of transaction/account informaton
             report += transactions[i].toString() + "\n";
          }
+         // displays report
          JOptionPane.showMessageDialog(null, report);  
       }
+      // Return error message with null pointer errors
       catch(NullPointerException n) {
          JOptionPane.showMessageDialog(null, "Error. Please try again.");
       }
