@@ -273,6 +273,10 @@ public class ManagementApp{
         return transactions;
     }
     
+    /**
+      Generates and displays formatted report of account transactions.
+      @param transactions transactions list
+    */
     public static void generateReport(Transaction[] transactions) {
       String report = "Transactions Report:\n\nDate | Category | Amount\n";
       
