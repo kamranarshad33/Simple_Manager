@@ -1,7 +1,7 @@
 import java.util.Date;
 
 /**
-   Defines information related to the process of an account transactions that
+   Defines information related to the process of an account transaction that
    includes the amount, date, and category.
 */
 public class Transaction{
