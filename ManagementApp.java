@@ -1,5 +1,5 @@
 
-
+/*
 import java.io.BufferedReader;
 import java.util.*;
 import javax.swing.JOptionPane;
@@ -18,7 +18,7 @@ public class ManagementApp{
         int acctcounter = 0;
         Transaction[] transactions = null;
 
-/*
+
         //read from files to create objects: loadData();
             LinkedList<Bank> users = new LinkedList<Bank>();
             try {
@@ -37,7 +37,7 @@ public class ManagementApp{
             //validateAcc(acc)
         //do you have an account?
 
- */
+
       JOptionPane.showMessageDialog(null,"Welcome to the Money Manager!");
       
       //yes? || no?
@@ -128,7 +128,7 @@ public class ManagementApp{
         return option;
     }
 
-    /*
+
     
     public static void loadData(LinkedList<Bank> users) throws FileNotFoundException, IOException {
       // prepopulate date from input file
@@ -166,9 +166,9 @@ public class ManagementApp{
          //System.out.println(user.users.entrySet());
       }
     }
-    */
 
-    
+
+
     public static void addBankAcc(Account bankaccs) {
       int accounttype = 0;
       String acctrouting="";
@@ -290,8 +290,8 @@ public class ManagementApp{
                      case 1: // Search by Date
                         do {
                            date = JOptionPane.showInputDialog(null, "Enter a date in the format of MM/DD/YY: ");
-                        } while (!validDate(date)); 
-                        historyReport(date, transactions);
+                        } while (!validDate(date));
+                         JOptionPane.showMessageDialog(null,searchTransactionsDate(date, transactions));
                         break;
                      case 2: // Search by transaction category
                         do  {
@@ -317,13 +317,17 @@ public class ManagementApp{
             return false;
          }
          else{
+            /*
             for(int i = 0; i < date.length(); i++){
+
                 if(i == 0){
                     if(date.charAt(i) != '0' || date.charAt(i) != '1'){
                         JOptionPane.showMessageDialog(null, "Error: The first number in the date must be 0 or 1. Please try again.");
                         return false;
                     }
                 }
+
+
                 else if(i != 2 || i != 5){
                     if(!Character.isDigit(date.charAt(i))){
                         JOptionPane.showMessageDialog(null, "Error: The date can only contain numbers and /. Please try again.");
@@ -337,11 +341,15 @@ public class ManagementApp{
                     }
                 }
             }
+
             return true;
         }
     }
     
     public static void historyReport(String date, Transaction[] transactions) {
+
+
+
         String report = searchTransactions(date, transactions);
         writeReport(report);
     }
@@ -364,6 +372,7 @@ public class ManagementApp{
     public static String searchTransactions(String key, Transaction[] transactions){
         //LinkedList<Transaction> transactions = getTransactions();
         String report = "";
+
         if(!Character.isDigit(key.charAt(0))){
             for(Transaction curr : transactions){
                 if(curr.getTransType().equals(key)){
@@ -380,7 +389,31 @@ public class ManagementApp{
         }
         return report;
     }
-    
+
+
+
+
+    public static String searchTransactionsDate(String key, Transaction[] transactions) {
+
+        int balance=0;
+        String report = "";
+        report += "Transactions Search result for  " + key + ":\n\n    Date     | Category | Type |  Amount\n \n";
+
+
+        for (int i = 0; i < transactions.length; i++) {
+            if (transactions[i].getDate() == key) {
+                report += transactions[i].toString() + "\n";
+                balance += transactions[i].getAmount();
+            }
+        }
+        report += "\n\n\n";
+        report += "Total Balance for transaction on " + key + "is $" + balance + ".00";
+
+        return report;
+    }
+
+
+
     public static void writeReport(String report){
         JOptionPane.showMessageDialog(null, report);
     }
@@ -388,10 +421,10 @@ public class ManagementApp{
     /**
       Generates and displays formatted report of account transactions.
       @param transactions transactions list
-    */
+
     public static void generateReport(Transaction[] transactions) {
       // String transaction/account information will be appended to
-      String report = "Transactions Report:\n\nDate | Category | Amount\n";
+      String report = "Transactions Report:\n\n    Date     | Category | Type |  Amount\n \n";
       
       // Append transaction/account information on to report, then
       // display formatted report to user
@@ -478,7 +511,9 @@ public class ManagementApp{
       // toString()s
     }
 
-  */
+
 
 
 }
+
+*/
