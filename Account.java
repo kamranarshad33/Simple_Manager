@@ -27,10 +27,10 @@ public class Account{
 
     /**
       Constructor for Account class that instantiates Account object.
-      @param transType account type
-      @param bankName name of bank
-      @param rounting account routing number
-      @param balance account balance
+      //@param transType account type
+     //@param bankName name of bank
+     // @param rounting account routing number
+     // @param balance account balance
     */
     public Account(String accttype, String bankname, String routing, double balance){
 
@@ -65,7 +65,7 @@ public class Account{
     
     /**
       Sets balance of account.
-      @param balance balance of account
+     // @param balance balance of account
     */
     public void setBalance(double balance) {
         this.balance = balance;
@@ -81,7 +81,7 @@ public class Account{
     
     /**
       Sets the account type.
-      @param account type
+     // @param account type
     */
     public void setAccttype(String accttype) {
         this.accttype = accttype;
@@ -97,7 +97,7 @@ public class Account{
     
     /**
       Sets the name of the bank.
-      @param name of bank
+     // @param name of bank
     */
     public void setBankname(String bankname) {
         this.bankname = bankname;
@@ -131,9 +131,9 @@ public class Account{
     /**
       Returns String of aggregated account information.
       @return overall account information
-    */    
+    */
     public String toString() {
-        return "Account{balance=" + balance + ", accttype=" + accttype + ", bankname=" + bankname + ", routing=" + routing + '}';
+        return "Account Details: " + "accttype= " + accttype + ", bankname= " + bankname + ", Acct Num= " + routing  + "balance= " + balance;
     }
 
 }
