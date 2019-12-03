@@ -273,6 +273,50 @@ public class ManagementApp{
         return transactions;
     }
     
+    public static void historyReport(String date) {
+        String report = searchTransactions(date);
+        writeReport(report);
+    }
+    
+    public static void historyReport(int category) {
+        String report = "";
+        if(category == 1){
+            //unless we are going to use W for withdrawal
+            String type = "Withdrawal";
+            report = searchTransactions(type);
+        }
+        else if(category == 2){
+            //unless we are going to use D for deposit
+            String type = "Deposit"; 
+            report = searchTransactions(type);
+        }
+        writeReport(report);
+    }
+    
+    public static String searchTransactions(String key, Transaction[] transactions){
+        //LinkedList<Transaction> transactions = getTransactions();
+        String report = "";
+        if(!Character.isDigit(key.charAt(0))){
+            for(Transaction curr : transactions){
+                if(curr.getTransType().equals(key)){
+                    report += curr.toString();
+                }
+            }
+        }
+        else{
+            for(Transaction curr : transactions){
+                if(curr.getDate().equals(key)){
+                    report += curr.toString();
+                }
+            }
+        }
+        return report;
+    }
+    
+    public static void writeReport(String report){
+        JOptionPane.showMessageDialog(null, report);
+    }
+    
     /**
       Generates and displays formatted report of account transactions.
       @param transactions transactions list
