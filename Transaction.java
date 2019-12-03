@@ -24,12 +24,20 @@ public class Transaction{
       @param amount transaction amount
      // @param transDate transaction date
     */
-    public Transaction(String transType,String transCategory, double amount, String TransDate) {  
+    public Transaction(String transType,String transCategory, double amount, String TransDate, int acctnum) {
         this.amount = amount;
         this.transDate = TransDate;
         this.transType = transType;
-        this.transCategory = transCategory;   
-    
+        this.transCategory = transCategory;
+        this.Attached_Account = acctnum;
+
+    }
+    public Transaction(String transType,String transCategory, double amount, String TransDate) {
+        this.amount = amount;
+        this.transDate = TransDate;
+        this.transType = transType;
+        this.transCategory = transCategory;
+
     }
     
     /**
