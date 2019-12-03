@@ -16,6 +16,7 @@ public class CheckinAcc extends Account{
     */
     public CheckinAcc(String accttype, String bankname, String routing, double balance){
         super(accttype,bankname,routing,balance);
+        // Assigns account type to be checking account
         this.Accttype= "Checking Account" ;
     }
 

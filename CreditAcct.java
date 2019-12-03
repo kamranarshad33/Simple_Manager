@@ -16,6 +16,7 @@ public class CreditAcct extends Account{
     */
     public CreditAcct(String accttype, String bankname, String routing, double balance){
         super(accttype,bankname,routing,balance);
+        // Assigns account type to be credit account
         this.Accttype = "Credit Account" ;
     }
 
