@@ -396,6 +396,7 @@ public class ManagementApp{
       // Append transaction/account information on to report, then
       // display formatted report to user
       try {
+         sortByAmount(transactions);
          for (int i = 0; i < transactions.length; i++) {
             // appends new line of transaction/account informaton
             report += transactions[i].toString() + "\n";
