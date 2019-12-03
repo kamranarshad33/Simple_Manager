@@ -1,2 +1,2 @@
-deposit,CashDeposit,12/12/2019,500.00
-withdrawal,Food,12/13/2019,19
+deposit,CashDeposit,12/12/19,500.00
+withdrawal,Food,12/13/19,19
