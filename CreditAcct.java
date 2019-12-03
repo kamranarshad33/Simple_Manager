@@ -1,5 +1,5 @@
 /**
-   The CheckinAcc class is defined as a credit account type
+   The CreditAcct class is defined as a credit account type
    inherited from the parent Account class.
 */
 public class CreditAcct extends Account{
