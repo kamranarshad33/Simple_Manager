@@ -13,6 +13,9 @@ public class Transaction{
     private String transType;
     // Category of transaction
     private String transCategory;
+
+    //This ensues that the correct account is attached
+    private int Attached_Account;
     
     /**
       Constructor for Transaction class that instantiates Transaction object.
@@ -57,7 +60,9 @@ public class Transaction{
     public String getDate() {
       return this.transDate;
     }
-    
+
+
+
     /**
       Sets date of transaction using date formatting.
       @param userDate transaction date
@@ -65,6 +70,22 @@ public class Transaction{
     public void setDate(Date userDate) {
         // formats date to String = MM/DD/YY
         transDate = String.format("%tD", userDate);
+    }
+
+    /**
+     Returns the account to which the transactions belong.
+     @return Account Number for the transaction
+     */
+    public int getTransAccount() {
+        return this.Attached_Account;
+    }
+
+    /**
+     Sets the Account number attached.
+     @param Account_Attached category
+     */
+    public void setAccount(int account_attached) {
+        this.Attached_Account = account_attached;
     }
     
     /**
