@@ -22,7 +22,7 @@ public class Transaction{
       @param transType transaction type
       @param transCategory transaction category
       @param amount transaction amount
-      @param transDate transaction date
+     // @param transDate transaction date
     */
     public Transaction(String transType,String transCategory, double amount, String TransDate) {  
         this.amount = amount;
@@ -42,7 +42,7 @@ public class Transaction{
     
     /**
       Sets the amount of the transaction and ensures the amount is a valid number.
-      @param amount transaction amount
+    //  @param amount transaction amount
     */
     public void setAmount(double amount){
         if(amount >= 0){ 
@@ -65,7 +65,7 @@ public class Transaction{
 
     /**
       Sets date of transaction using date formatting.
-      @param userDate transaction date
+     // @param userDate transaction date
     */
     public void setDate(Date userDate) {
         // formats date to String = MM/DD/YY
@@ -82,7 +82,7 @@ public class Transaction{
 
     /**
      Sets the Account number attached.
-     @param Account_Attached category
+    // @param Account_Attached category
      */
     public void setAccount(int account_attached) {
         this.Attached_Account = account_attached;
@@ -98,7 +98,7 @@ public class Transaction{
     
     /**
       Sets the type of tranactions and ensures valid transaction type input.
-      @param type transaction type
+      //@param type transaction type
     */
     public void setTransType(String type) {
       if (type.trim().equalsIgnoreCase("deposit") || type.trim().equalsIgnoreCase("withdrawal")) {
@@ -119,7 +119,7 @@ public class Transaction{
     
     /**
       Sets the category of the transaction.
-      @param transaction category
+     // @param transaction category
     */
     public void setTransCategory(String transCategory) {
         this.transCategory = transCategory;
@@ -130,6 +130,6 @@ public class Transaction{
       @return overall transaction information
     */
     public String toString() {
-      return getDate() + " | " + getTransType() + " | $" + getAmount();
+      return getDate() + " | " + getTransType() + " | " + getTransCategory() + " | $" + getAmount();
     }
 }  
