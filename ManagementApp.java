@@ -78,16 +78,16 @@ public class ManagementApp{
                 case 3:
                     JOptionPane.showMessageDialog(null, "Search All transaction");
 
-                   // historySearch();
+                    historySearch(transactions);
                     //historySearch(UserObj);
                     //historyReport() //reporting done at end of search instead
                     break;
                 case 4:
-                    JOptionPane.showMessageDialog(null, "user report");
+                    JOptionPane.showMessageDialog(null, "User Report");
                     generateReport(transactions);
                     break;
                 case 5:
-                    JOptionPane.showMessageDialog(null, "quit");
+                    JOptionPane.showMessageDialog(null, "Quitting program...");
                     //Quits the program //System.exit()??
                     //no action required here
                     break;
@@ -273,22 +273,90 @@ public class ManagementApp{
         return transactions;
     }
     
-    public static void historyReport(String date) {
-        String report = searchTransactions(date);
+   public static void historySearch(Transaction[] transactions) {
+        int option = 0;
+        String date = "";
+        int category = 0;
+ 
+        do{
+            try {
+               option = Integer.parseInt(JOptionPane.showInputDialog(null, "Search transactions by:\n 1) Date\n 2) Category",
+                  "Search Transaction History", JOptionPane.QUESTION_MESSAGE));
+               if (option < 1 || option > 2) {
+                  throw new NumberFormatException();
+               }
+               else {
+                  switch(option) {
+                     case 1: // Search by Date
+                        do {
+                           date = JOptionPane.showInputDialog(null, "Enter a date in the format of MM/DD/YY: ");
+                        } while (!validDate(date)); 
+                        historyReport(date, transactions);
+                        break;
+                     case 2: // Search by transaction category
+                        do  {
+                           category = Integer.parseInt(JOptionPane.showInputDialog(null, "Search by:\n 1) Deposits\n 2) Withdrawals"));
+                           if (category < 1 || category > 2) {
+                              throw new NumberFormatException();
+                           }
+                        } while (category < 1 || category > 2);
+                        historyReport(category, transactions);
+                        break;
+                  }
+               }
+            }
+            catch (NumberFormatException e) {
+               JOptionPane.showMessageDialog(null, "Error: Search Choice must be number 1 or 2.  Please try again.");
+            }
+        }while(option < 1 || option > 2);    
+    }
+    
+    public static boolean validDate(String date) {
+         if(date.length() != 8){
+            JOptionPane.showMessageDialog(null, "Error: Date must be in format MM/DD/YY. Please try again.");
+            return false;
+         }
+         else{
+            for(int i = 0; i < date.length(); i++){
+                if(i == 0){
+                    if(date.charAt(i) != '0' || date.charAt(i) != '1'){
+                        JOptionPane.showMessageDialog(null, "Error: The first number in the date must be 0 or 1. Please try again.");
+                        return false;
+                    }
+                }
+                else if(i != 2 || i != 5){
+                    if(!Character.isDigit(date.charAt(i))){
+                        JOptionPane.showMessageDialog(null, "Error: The date can only contain numbers and /. Please try again.");
+                        return false;
+                    }
+                }
+                else{
+                    if(date.charAt(i) != '/'){
+                        JOptionPane.showMessageDialog(null, "Error: The third and fifth character in the date must be a /. Please try again.");
+                        return false;
+                    }
+                }
+            }
+            return true;
+        }
+    }
+    
+    public static void historyReport(String date, Transaction[] transactions) {
+        String report = searchTransactions(date, transactions);
         writeReport(report);
     }
     
-    public static void historyReport(int category) {
+    public static void historyReport(int category, Transaction[] transactions) {
         String report = "";
         if(category == 1){
             //unless we are going to use W for withdrawal
             String type = "Withdrawal";
-            report = searchTransactions(type);
+            report = searchTransactions(type, transactions);
         }
         else if(category == 2){
             //unless we are going to use D for deposit
             String type = "Deposit"; 
-            report = searchTransactions(type);
+            report = searchTransactions(type, transactions);
         }
         writeReport(report);
     }
